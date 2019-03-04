@@ -8,6 +8,6 @@ def root(request):
     return HttpResponseRedirect('home')
 
 def home(request):
-    context = {'date': date.today(), 'article': Article.objects.filter(draft=False)}
+    context = {'date': date.today(), 'article': Article.objects.filter(draft=False).order_by('-published_date')}
     response = render(request, 'index.html', context)
     return HttpResponse(response)
