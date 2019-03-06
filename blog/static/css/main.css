@@ -41,8 +41,10 @@ main {
 }
 
 main h2 {
-  padding: 0.1em 0.4em;
+  padding: 0 0.4em;
+  padding-top: 0.1em;
   font-weight: 50;
+
 }
 
 main a {
@@ -60,6 +62,12 @@ main a {
 .content {
   font-family: 'Raleway', sans-serif;
   font-weight: lighter;
+}
+
+.box {
+  display: inline-block;
+  border: 1px solid white;
+  color: blue;
 }
 
 footer {
