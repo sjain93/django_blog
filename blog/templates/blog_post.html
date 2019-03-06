@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>{{ blog_post.title }}</h2>
+    <div class='post'>
+      <p>By// <span>{{ blog_post.author }}</span> </p>
+      <p class='content'>{{ blog_post.body }} </p>
+      <p>Posted on// <span>{{ blog_post.published_date }}</span> </p>
+    </div>
+{% endblock %}

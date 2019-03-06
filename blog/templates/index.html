@@ -1,23 +1,15 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Django Blog</title>
-  </head>
-  <body>
-    <h1>Welcome to the Django Blog (the D is Silent)</h1>
-    <p>
-      The current date is : {{ date }}
-    </p>
+{% extends 'base.html' %}
+{% block content %}
     <h2>Articles</h2>
       {% for piece in article %}
         <ul>
-          <li>
-            <p>{{ piece.title }} | {{ piece.author }} </p>
-            <p>{{ piece.body }} </p>
-            <p>{{ piece.published_date }} </p>
-          </li>
+          <a href="{% url 'blog_post' id=piece.pk %}">
+            <li>
+              <p>{{ piece.title }}</p>
+              <!-- <p>{{ piece.body }} </p>
+              <p>{{ piece.published_date }} </p> -->
+            </li>
+          </a>
         </ul>
       {% endfor %}
-  </body>
-</html>
+{% endblock %}

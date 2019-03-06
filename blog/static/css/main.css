@@ -1,0 +1,75 @@
+html {
+  background: url('https://images.pexels.com/photos/763097/pexels-photo-763097.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260') no-repeat center center fixed;
+  background-size: cover;
+}
+
+nav {
+  background-color: rgba(39,39,39,0.5);
+  color: white;
+  text-shadow: 3px 3px gray;
+  margin: 0 auto;
+  padding: 0.1em 0.5em;
+  width: 100%;
+}
+
+nav h1 {
+  font-family: 'Roboto Mono', monospace;
+  text-transform: lowercase;
+}
+
+nav p {
+  font-family: 'ZCOOL QingKe HuangYou', cursive;
+  /* color: white; */
+  text-shadow: none;
+}
+
+span {
+  color: mediumseagreen;
+  font-weight: 100;
+}
+
+body {
+  box-sizing: border-box;
+  font-family: 'ZCOOL QingKe HuangYou', cursive;
+  color: white;
+}
+
+main {
+  width: 33%;
+  background-color: rgba(39,39,39,0.5);
+  margin: 0.1em 0.5em;
+}
+
+main h2 {
+  padding: 0.1em 0.4em;
+  font-weight: 50;
+}
+
+main a {
+  color: mediumseagreen;
+  font-weight: 100;
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.post {
+  padding: 0 0.4em;
+  padding-bottom: 0.1em;
+}
+
+.content {
+  font-family: 'Raleway', sans-serif;
+  font-weight: lighter;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(39,39,39,0.5);
+  color: white;
+  font-weight: 300;
+  text-align: right;
+  padding: 5px;
+  width: 100%;
+}
