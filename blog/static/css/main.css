@@ -35,19 +35,30 @@ body {
 }
 
 main {
+  grid-template-columns: 1fr 1fr 1fr;
+
+}
+
+.front {
   width: 33%;
   background-color: rgba(39,39,39,0.5);
   margin: 0.1em 0.5em;
 }
 
-main h2 {
+.post {
+  width: 66%;
+  background-color: rgba(39,39,39,0.5);
+  margin: 0.1em 0.5em;
+}
+
+.front h2, .post h2 {
   padding: 0 0.4em;
   padding-top: 0.1em;
   font-weight: 50;
 
 }
 
-main a {
+.front a, .post a {
   color: mediumseagreen;
   font-weight: 100;
   text-decoration: none;
@@ -65,19 +76,27 @@ main a {
 }
 
 .box {
-  display: inline-block;
-  border: 1px solid white;
-  color: blue;
+  list-style-type: disc;
 }
 
+.comments {
+  background-color: rgba(39,39,39,0.5);
+  padding: 0 0.8em;
+  width: 66%;
+}
+
+.comment_form {
+  padding: 5px;
+  background-color: rgba(39,39,39,0.5);
+  margin: 0.5em 0.5em;
+  width: 66%;
+}
 footer {
-  position: fixed;
   bottom: 0;
-  right: 0;
   background-color: rgba(39,39,39,0.5);
   color: white;
   font-weight: 300;
-  text-align: right;
+  text-align: center;
   padding: 5px;
   width: 100%;
 }

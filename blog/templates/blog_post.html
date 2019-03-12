@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>{{ blog_post.title }}</h2>
     <div class='post'>
+      <h2>{{ blog_post.title }}</h2>
       <p>by// <span>{{ blog_post.author }}</span> </p>
       <p class='content'>{{ blog_post.body }} </p>
       <p>posted on// <span>{{ blog_post.published_date }}</span> </p>
@@ -17,13 +17,10 @@
         </ul>
       {% endfor %}
     </div>
-    <div class="comment_form">
-      <form class="comment_form" action="{% url 'create_comment'%}" method="post">
+    <div>
+      <form class="comment_form" action="{% url 'create_comment'%}" method="POST">
         {% csrf_token %}
-        <input type="hidden" name="article" value="{{ blog_post.pk }}">
-        <label for="commenter">Name</label>
-        <input type="text" name="name" id="commenter">
-        <textarea name="comment">Add your comment here</textarea>
+        {{ comment_form.as_p}}
         <input type="submit" name="submit" value="Send">
       </form>
     </div>

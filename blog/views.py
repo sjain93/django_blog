@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from blog.models import Article, Comment
+from blog.forms import CommentForm, ArticleForm
+from django.urls import reverse
 
 def root(request):
     return HttpResponseRedirect('home')
@@ -15,13 +17,31 @@ def home(request):
 def blog_post(request, id):
     item = Article.objects.get(pk=int(id))
     art_comments = item.comments.all()
-    context = {'blog_post': item, 'blog_com': art_comments }
+    context = {'blog_post': item, 'blog_com': art_comments, 'comment_form': CommentForm(initial={'article': id})}
     response = render(request, 'blog_post.html', context)
     return HttpResponse(response)
 
 def create_comment(request):
-    article = Article.objects.get(pk= request.POST['article'])
-    comment = article.comments.create(name=request.POST['name'],
-    message=request.POST['comment']
-    )
-    return HttpResponseRedirect('/home/{}'.format(article.pk))
+    post_data = request.POST
+    form = CommentForm(post_data)
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect('/home/{}'.format(post_data['article']))
+    else:
+        return HttpResponseRedirect('/home/{}'.format(post_data['article']))
+
+def create_post(request):
+    if request.method == 'POST':
+        post_data = request.POST
+        print(post_data)
+        form = ArticleForm(post_data)
+        if form.is_valid():
+            new_post = form.save()
+            return HttpResponseRedirect(reverse(blog_post, args=[new_post.pk]))
+        else:
+            return HttpResponseRedirect('/home')
+    else:
+        form = ArticleForm()
+        context = {'form': form}
+        response = render(request, 'new_post.html', context)
+        return HttpResponse(response)

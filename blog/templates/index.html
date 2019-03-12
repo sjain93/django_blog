@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+  <div class="front">
     <h2>Articles</h2>
       {% for piece in article %}
         <ul>
@@ -12,4 +13,5 @@
           </a>
         </ul>
       {% endfor %}
+  </div>
 {% endblock %}
