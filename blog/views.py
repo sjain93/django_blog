@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from blog.models import Article, Comment
 from blog.forms import CommentForm, ArticleForm, LoginForm
+from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 
 def root(request):
@@ -47,6 +48,17 @@ def create_post(request):
         return HttpResponse(response)
 
 def login_view(request):
-    form=LoginForm()
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            pw = form.cleaned_data['password']
+            user = authenticate(username=username, password=pw)
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect('/home')
+    else:
+        form=LoginForm()
+
     context = {'form':form}
     return HttpResponse(render(request, 'login.html', context))
