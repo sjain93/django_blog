@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from blog.models import Article, Comment
-from blog.forms import CommentForm, ArticleForm
+from blog.forms import CommentForm, ArticleForm, LoginForm
 from django.urls import reverse
 
 def root(request):
@@ -45,3 +45,8 @@ def create_post(request):
         context = {'form': form}
         response = render(request, 'new_post.html', context)
         return HttpResponse(response)
+
+def login_view(request):
+    form=LoginForm()
+    context = {'form':form}
+    return HttpResponse(render(request, 'login.html', context))

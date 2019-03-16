@@ -1,4 +1,4 @@
-from django.forms import ModelForm, HiddenInput, DateInput
+from django.forms import ModelForm, HiddenInput, DateInput, CharField, PasswordInput, Form
 from blog.models import Comment, Article
 
 class CommentForm(ModelForm):
@@ -14,3 +14,7 @@ class ArticleForm(ModelForm):
         widgets = {
             'published_date': DateInput(attrs={'type': 'date'})
         }
+
+class LoginForm(Form):
+    username = CharField(label = 'User Name', max_length=64)
+    password = CharField(widget=PasswordInput())
