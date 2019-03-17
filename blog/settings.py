@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# redirct unauthenticated users
+LOGIN_URL = 'login'
 
 # Application definition
 
