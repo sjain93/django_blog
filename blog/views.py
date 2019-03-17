@@ -62,3 +62,7 @@ def login_view(request):
 
     context = {'form':form}
     return HttpResponse(render(request, 'login.html', context))
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/home')
