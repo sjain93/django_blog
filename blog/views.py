@@ -32,7 +32,7 @@ def blog_post(request, id):
     response = render(request, "blog_post.html", context)
     return HttpResponse(response)
 
-
+@login_required
 def create_comment(request):
     post_data = request.POST
     form = CommentForm(post_data)
@@ -79,7 +79,7 @@ def login_view(request):
     context = {"form": form}
     return HttpResponse(render(request, "login.html", context))
 
-
+@login_required
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect("/home")
