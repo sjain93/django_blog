@@ -6,11 +6,11 @@ from blog.models import Article, Comment
 from blog.forms import CommentForm, ArticleForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 
 def root(request):
     return HttpResponseRedirect("home")
-
 
 def home(request):
     context = {
@@ -42,13 +42,14 @@ def create_comment(request):
     else:
         return HttpResponseRedirect("/home/{}".format(post_data["article"]))
 
-
+@login_required
 def create_post(request):
     if request.method == "POST":
         post_data = request.POST
         print(post_data)
         form = ArticleForm(post_data)
         if form.is_valid():
+            form.user = request.user
             new_post = form.save()
             return HttpResponseRedirect(reverse(blog_post, args=[new_post.pk]))
         else:

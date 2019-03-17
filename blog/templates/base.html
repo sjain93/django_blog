@@ -14,6 +14,14 @@
     {% if date %}
       <p>current date// <span> {{ date }} </span></p>
     {% endif %}
+    {% if request.user.is_authenticated %}
+      <p>
+        <a href="{% url 'logout' %}">Logout</a>
+        <a href="{% url 'create_post' %}">Create</a>
+      </p>
+    {% else %}
+      <p><a href="{% url 'login' %}">Login</a></p>
+    {% endif %}
     </nav>
     <main>
       {% block content %}

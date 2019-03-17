@@ -22,6 +22,12 @@ nav p {
   /* color: white; */
   text-shadow: none;
 }
+nav > p > a {
+  font-family: 'ZCOOL QingKe HuangYou', cursive;
+  color: white;
+  text-shadow: none;
+  text-decoration: none;
+}
 
 span {
   color: mediumseagreen;

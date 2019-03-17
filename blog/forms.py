@@ -19,7 +19,7 @@ class CommentForm(ModelForm):
 class ArticleForm(ModelForm):
     class Meta:
         model = Article
-        fields = ["title", "body", "author", "published_date", "draft"]
+        fields = ["title", "body", "user", "published_date", "draft"]
         widgets = {"published_date": DateInput(attrs={"type": "date"})}
 
 
