@@ -6,25 +6,31 @@ from datetime import date, datetime
 
 min_len = MinLengthValidator(limit_value=2)
 
+
 class Article(models.Model):
-    title = models.CharField(max_length = 255)
+    title = models.CharField(max_length=255)
     body = models.TextField(validators=[min_len])
     draft = models.BooleanField()
     published_date = models.DateField()
-    author = models.CharField(max_length = 255)
+    author = models.CharField(max_length=255)
 
     def clean(self):
         if self.draft and self.published_date < date.today():
-            raise ValidationError ("Article must be published in the future as it is a draft")
+            raise ValidationError(
+                "Article must be published in the future as it is a draft"
+            )
 
     def __str__(self):
         return self.title
 
+
 class Comment(models.Model):
-    name = models.CharField(max_length = 255)
+    name = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     message = models.TextField()
-    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name ='comments')
+    article = models.ForeignKey(
+        Article, on_delete=models.CASCADE, related_name="comments"
+    )
 
     def __str__(self):
         return self.name

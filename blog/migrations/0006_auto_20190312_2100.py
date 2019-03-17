@@ -6,14 +6,14 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('blog', '0005_comment'),
-    ]
+    dependencies = [("blog", "0005_comment")]
 
     operations = [
         migrations.AlterField(
-            model_name='article',
-            name='body',
-            field=models.TextField(validators=[django.core.validators.MinLengthValidator(limit_value=2)]),
-        ),
+            model_name="article",
+            name="body",
+            field=models.TextField(
+                validators=[django.core.validators.MinLengthValidator(limit_value=2)]
+            ),
+        )
     ]

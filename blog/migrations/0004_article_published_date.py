@@ -6,15 +6,15 @@ import django.utils.timezone
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('blog', '0003_remove_article_published_date'),
-    ]
+    dependencies = [("blog", "0003_remove_article_published_date")]
 
     operations = [
         migrations.AddField(
-            model_name='article',
-            name='published_date',
-            field=models.DateField(auto_now_add=True, default=django.utils.timezone.now),
+            model_name="article",
+            name="published_date",
+            field=models.DateField(
+                auto_now_add=True, default=django.utils.timezone.now
+            ),
             preserve_default=False,
-        ),
+        )
     ]
