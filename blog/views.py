@@ -1,7 +1,7 @@
 from datetime import date
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from blog.models import Article, Comment
 from blog.forms import CommentForm, ArticleForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
@@ -83,3 +83,20 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect("/home")
+
+@login_required
+def edit_post(request, id):
+    article = get_object_or_404(Article, pk=id, user=request.user.pk)
+    if request.method == 'GET':
+        form = ArticleForm(instance=article)
+        context = {'form':form, 'article':article}
+        return render(request, 'edit_post.html', context)
+    elif request.method == 'POST':
+        form = ArticleForm(request.POST, instance=article)
+        if form.is_valid():
+            edited_post = form.save()
+            return HttpResponseRedirect("/home/{}".format(article.id))
+        else:
+            context = {'form':form, 'article':article}
+            return render(request, 'edit_post.html', context)
+            HttpResponse(response)

@@ -23,6 +23,7 @@ from blog.views import (
     create_post,
     login_view,
     logout_view,
+    edit_post,
 )
 
 urlpatterns = [
@@ -34,4 +35,5 @@ urlpatterns = [
     path("post/new", create_post, name="create_post"),
     path("login/", login_view, name="login"),
     path("logout/", logout_view, name="logout"),
+    path("home/<int:id>/edit", edit_post, name="edit_post" )
 ]
